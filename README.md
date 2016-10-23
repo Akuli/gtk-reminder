@@ -16,7 +16,7 @@ it easily:
     # make install
     # make uninstall
 
-Or you can install or uninstall using custom prefix:
+Or you can install or uninstall using a custom prefix:
 
     $ make PREFIX=~/my-prefix install
     $ make PREFIX=~/my-prefix uninstall
