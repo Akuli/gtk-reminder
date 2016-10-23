@@ -2,6 +2,8 @@
 
 This is a simple GTK+ 3 reminding application.
 
+![Screenshot of the reminder.](screenshot.png)
+
 You can download, compile and run this with the following commands. You need
 to have git, a make program, GTK+ 3 and a C compiler installed.
 
