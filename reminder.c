@@ -111,9 +111,12 @@ gboolean reminder_on_click(GtkWidget * button, gpointer data) {
 
 
 void reminder_start(Reminder * reminder) {
+	int minutes;
+
 	gtk_button_set_label(GTK_BUTTON(reminder->button), "Stop");
-	reminder->endtime = gtk_spin_button_get_value_as_int(
-		GTK_SPIN_BUTTON(reminder->spinbutton)) * 60 + time(NULL);
+	minutes = gtk_spin_button_get_value_as_int(
+		GTK_SPIN_BUTTON(reminder->spinbutton));
+	reminder->endtime = minutes * 60 + time(NULL);
 	g_timeout_add(1000, reminder_on_timeout, reminder);
 	reminder_on_timeout(reminder);    /* Run it now. */
 }
