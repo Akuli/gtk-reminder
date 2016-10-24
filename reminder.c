@@ -5,8 +5,7 @@
 #include "reminder.h"
 
 
-void reminder_convert_time(
-		unsigned int seconds, int * minutetarget, int * secondtarget) {
+void reminder_convert_time(int seconds, int * minutetarget, int * secondtarget) {
 	* minutetarget = seconds / 60;
 	* secondtarget = seconds % 60;
 }
@@ -44,8 +43,8 @@ void reminder_make_gtk_button_big(GtkWidget * button) {
 }
 
 
-Reminder * reminder_new(void) {
-	Reminder * reminder = (Reminder *) malloc(sizeof(Reminder));
+struct Reminder * reminder_new(void) {
+	struct Reminder * reminder = (struct Reminder *) malloc(sizeof(struct Reminder));
 	GtkWidget * bigbox;
 	GtkWidget * topbox;
 	GtkWidget * middlebox;
@@ -100,7 +99,7 @@ Reminder * reminder_new(void) {
 
 
 gboolean reminder_on_click(GtkWidget * button, gpointer data) {
-	Reminder * reminder = (Reminder *) data;
+	struct Reminder * reminder = (struct Reminder *) data;
 	if (reminder->endtime < 0) {
 		reminder_start(reminder);
 	} else {
@@ -110,7 +109,7 @@ gboolean reminder_on_click(GtkWidget * button, gpointer data) {
 }
 
 
-void reminder_start(Reminder * reminder) {
+void reminder_start(struct Reminder * reminder) {
 	int minutes;
 
 	gtk_button_set_label(GTK_BUTTON(reminder->button), "Stop");
@@ -122,7 +121,7 @@ void reminder_start(Reminder * reminder) {
 }
 
 
-void reminder_stop(Reminder * reminder) {
+void reminder_stop(struct Reminder * reminder) {
 	reminder->endtime = -1;
 	gtk_window_set_title(GTK_WINDOW(reminder->window), "Reminding program");
 	gtk_button_set_label(GTK_BUTTON(reminder->button), "Start");
@@ -131,7 +130,7 @@ void reminder_stop(Reminder * reminder) {
 
 
 gboolean reminder_on_timeout(gpointer data) {
-	Reminder * reminder = (Reminder *) data;
+	struct Reminder * reminder = (struct Reminder *) data;
 	time_t time_left;
 	int minutes;
 	int seconds;
@@ -171,7 +170,7 @@ gboolean reminder_on_timeout(gpointer data) {
 
 
 gboolean reminder_on_close(GtkWidget * window, GdkEvent * event, gpointer data) {
-	Reminder * reminder = (Reminder *) data;
+	struct Reminder * reminder = (struct Reminder *) data;
 	GtkWidget * dialog;
 	int response;
 
