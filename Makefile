@@ -9,11 +9,11 @@ all:
 	cc $(CFLAGS) reminder.c main.c -o reminder $(LIBS)
 
 install:
-	mkdir -p $(PREFIX)/bin
-	install reminder $(PREFIX)/bin/reminder
+	mkdir -p "$(PREFIX)/bin"
+	install reminder "$(PREFIX)/bin/reminder"
 
 uninstall:
-	rm $(PREFIX)/bin/reminder
+	rm "$(PREFIX)/bin/reminder"
 
 clean:
 	rm -f reminder
